@@ -2,9 +2,11 @@ version: '3'
 
 networks:
   frontend:
-    driver: ${NETWORKS_DRIVER}
+    external:
+      name: helpernetwork
   backend:
-    driver: ${NETWORKS_DRIVER}
+    external:
+      name: helpernetwork
 
 volumes:
   mysql:
