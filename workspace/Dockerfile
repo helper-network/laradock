@@ -174,6 +174,7 @@ USER root
 COPY ./crontab /etc/cron.d
 
 RUN chmod -R 644 /etc/cron.d
+RUN chmod -R 777 /var/log/cron.log
 
 ###########################################################################
 # Drush:
