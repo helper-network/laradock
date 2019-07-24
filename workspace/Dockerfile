@@ -173,8 +173,9 @@ USER root
 
 COPY ./crontab /etc/cron.d
 
+RUN touch /var/log/cron.log
+RUN chmod 777 /var/log/cron.log
 RUN chmod -R 644 /etc/cron.d
-RUN chmod -R 777 /var/log/cron.log
 
 ###########################################################################
 # Drush:
@@ -1023,4 +1024,7 @@ RUN apt-get clean && \
     rm /var/log/lastlog /var/log/faillog
 
 # Set default work directory
-WORKDIR /var/www
+WORKDIR /var/www/api
+
+
+CMD cron && php artisan queue:work --tries=1 >> /var/log/cron.log
