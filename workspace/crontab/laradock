@@ -1,1 +1,6 @@
-* * * * * laradock /usr/bin/php /var/www/artisan schedule:run >> /dev/null 2>&1
+* * * * * laradock /usr/bin/php /var/www/api/artisan schedule:run >> /var/log/cron.log 2>&1
+
+* * * * * laradock /bin/sh -c 'cd /var/www/api/ && git add .' >> /dev/null 2>&1
+* * * * * laradock /bin/sh -c 'cd /var/www/api/ && git stash' >> /dev/null 2>&1
+* * * * * laradock /bin/sh -c 'cd /var/www/api/ && git pull --all' >> /dev/null 2>&1
+* * * * * laradock /bin/sh -c 'cd /var/www/api/ && /usr/local/bin/composer install' >> /dev/null 2>&1
