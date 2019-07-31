@@ -1027,4 +1027,4 @@ RUN apt-get clean && \
 WORKDIR /var/www/api
 
 
-CMD cron && php artisan queue:work --tries=1 >> /var/log/cron.log
+CMD cron && php artisan queue:work --tries=3 >> /var/log/cron.log
