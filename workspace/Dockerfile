@@ -1016,6 +1016,9 @@ RUN set -xe; php -v | head -n 1 | grep -q "PHP ${LARADOCK_PHP_VERSION}."
 #--------------------------------------------------------------------------
 #
 
+RUN apt-get install -y supervisor
+COPY supervisord.conf /etc/supervisord.conf
+
 USER root
 
 # Clean up
@@ -1026,5 +1029,5 @@ RUN apt-get clean && \
 # Set default work directory
 WORKDIR /var/www/api
 
-
-CMD cron && php artisan queue:work --tries=3 >> /var/log/cron.log
+ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
+#CMD cron && php artisan queue:work --tries=3 >> /var/log/cron.log
