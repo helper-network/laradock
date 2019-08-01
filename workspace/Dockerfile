@@ -1029,5 +1029,5 @@ RUN apt-get clean && \
 # Set default work directory
 WORKDIR /var/www/api
 
-ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
-#CMD cron && php artisan queue:work --tries=3 >> /var/log/cron.log
+#ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
+CMD cron && /usr/bin/supervisord -n -c /etc/supervisord.conf
