@@ -4,4 +4,6 @@
 
 * * * * * root supervisorctl restart all >> /var/log/cron.log 2>&1
 
-0 0 12 1/2 * ? * laradock /bin/sh -c '> /var/log/cron.log' >> /dev/null 2>&1
+* * * * * root /bin/sh -c 'chown -R laradock /var/www/api/' >> /var/log/cron.log 2>&1
+
+0 12 * * * laradock /bin/sh -c '> /var/log/cron.log' >> /dev/null 2>&1
